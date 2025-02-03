@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
-export const LoadigScreens = () => {
+export const LoadigScreen = () => {
   return (
     <View>
-      <Text>LoadigScreens</Text>
+      <Text>LoadigScreen</Text>
     </View>
   );
 };
