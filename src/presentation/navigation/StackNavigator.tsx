@@ -13,6 +13,7 @@ const Stack = createStackNavigator<RootStackParam>();
 export const StackNavigator = () => {
   return (
     <Stack.Navigator
+      initialRouteName="LoadigScreen"
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: "white" },
