@@ -4,7 +4,7 @@ export const LoadigScreen = () => {
   const { top } = useSafeAreaInsets();
   return (
     <View>
-      <Text style={{ marginTop: top }}>LoadigScreen</Text>
+      <Text style={{ marginTop: top, marginLeft: 20 }}>LoadigScreen</Text>
     </View>
   );
 };
