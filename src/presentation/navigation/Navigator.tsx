@@ -4,7 +4,7 @@ import { LoadigScreen } from "../screens/loading/LoadingScreen";
 import { PermissionScreen } from "../screens/permissions/PermissionScreen";
 
 const Stack = createStackNavigator();
-export const Navigator = () => {
+export const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
