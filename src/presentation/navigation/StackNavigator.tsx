@@ -12,7 +12,12 @@ export type RootStackParam = {
 const Stack = createStackNavigator<RootStackParam>();
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: "white" },
+      }}
+    >
       <Stack.Screen
         name="MapScreen"
         component={MapScreen}
