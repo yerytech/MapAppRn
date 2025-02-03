@@ -3,7 +3,13 @@ import { MapScreen } from "../screens/maps/MapScreen";
 import { LoadigScreen } from "../screens/loading/LoadingScreen";
 import { PermissionScreen } from "../screens/permissions/PermissionScreen";
 
-const Stack = createStackNavigator();
+export type RootStackParam = {
+  MapScreen: undefined;
+  LoadigScreen: undefined;
+  PermissionScreen: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParam>();
 export const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
