@@ -20,7 +20,10 @@
             "android.permission.CAMERA",
             "android.permission.RECORD_AUDIO"
           ],
-          "iosPermissions": ["Camera", "Microphone"]
+          "iosPermissions": [
+            "Camera",
+            "Microphone"
+          ]
         }
       ]
     ],
@@ -29,7 +32,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "[REASON]",
         "NSMicrophoneUsageDescription": "[REASON]"
-      }
+      },
+      "bundleIdentifier": "com.anonymous.MapsApp"
     },
     "android": {
       "adaptiveIcon": {
