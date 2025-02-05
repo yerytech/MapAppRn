@@ -33,5 +33,11 @@
         <data android:scheme="exp+mapsapp"/>
       </intent-filter>
     </activity>
+  <meta-data
+     android:name="com.google.android.geo.API_KEY"
+     android:value="AIzaSyAMTdP1GsGJzR1czjzosOkDFP-g51lSchQ"/>
+
+
+
   </application>
 </manifest>
