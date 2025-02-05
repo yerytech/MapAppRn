@@ -9,11 +9,16 @@ export const PermissionChecker = ({ children }: PropsWithChildren) => {
   const { locationStatus, checkLocationPermission } = usePermissionStore();
   const navigation = useNavigation<NavigationProp<RootStackParam>>();
 
+
   useEffect(() => {
     if (locationStatus === "granted") {
-      navigation.navigate("MapScreen");
-    } else if (locationStatus !== "undetermined") {
-      navigation.navigate("PermissionScreen");
+      navigation.reset({
+        routes: [{ name: "MapScreen" }],
+      });
+    } else if (locationStatus === "undetermined") {
+      navigation.reset({
+        routes: [{ name: "PermissionScreen" }],
+      });
     }
   }, [locationStatus]);
 
@@ -22,8 +27,6 @@ export const PermissionChecker = ({ children }: PropsWithChildren) => {
       if (nextAppState === "active") {
         checkLocationPermission();
       }
-
-      console.log("AppState", nextAppState);
     });
 
     return () => {
