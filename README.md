@@ -1,6 +1,6 @@
 # MapsApp
 
-Este proyecto es una aplicación móvil desarrollada con React Native y Expo (Bare Workflow). Su función principal es solicitar permisos de localización y activar el GPS en dispositivos móviles.
+Este proyecto es una aplicación móvil desarrollada con React Native y Expo (Bare Workflow). Su función principal es mostrar un mapa interactivo que permite visualizar rutas entre dos puntos, seguir la ubicación del usuario en tiempo real y hacer zoom automático. Además, gestiona permisos para habilitar el acceso a la localización.
 
 ## Repositorio
 
@@ -49,22 +49,31 @@ Edita el archivo `android/app/src/main/AndroidManifest.xml` y agrega:
 Edita el archivo `ios/tu-proyecto/Info.plist` y agrega:
 ```xml
 <key>NSLocationWhenInUseUsageDescription</key>
-<string>Necesitamos tu ubicación para mostrarte contenido relevante.</string>
+<string>Necesitamos tu ubicación para mostrarte rutas y seguir tu posición en tiempo real.</string>
 ```
 
 ## Uso
 
 Ejecuta la aplicación en modo desarrollo:
 ```sh
-npx react-native run-android # Para Android
-npx react-native run-ios # Para iOS
+expo run:android # Para Android
+expo run:ios # Para iOS
 ```
+
+## Características
+
+- **Visualización de Mapas:** Muestra un mapa interactivo.
+- **Rutas:** Calcula y muestra rutas entre dos puntos.
+- **Seguimiento en Tiempo Real:** Sigue la ubicación del usuario.
+- **Zoom Automático:** Ajusta el zoom para enfocar la ruta y la ubicación del usuario.
+- **Gestión de Permisos:** Solicita y gestiona permisos de localización.
 
 ## Tecnologías Utilizadas
 
 - React Native
 - Expo (Bare Workflow)
 - Expo Location
+- React Native Maps
 - React Native Permissions
 
 ## Configuración de React Native Permissions
