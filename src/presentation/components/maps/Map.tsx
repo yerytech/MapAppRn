@@ -5,12 +5,14 @@ import MapView, {
 } from "react-native-maps";
 import { Platform, StyleSheet, View } from "react-native";
 import React from "react";
+import { Location } from "../../../infrastructure/interfaces/location";
 
 interface Props {
   showsUserLocation?: boolean;
+  initailLocation: Location;
 }
 
-export const Map = ({ showsUserLocation = true }: Props) => {
+export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
   return (
     <>
       <MapView
@@ -18,8 +20,8 @@ export const Map = ({ showsUserLocation = true }: Props) => {
         provider={Platform.OS === "ios" ? PROVIDER_DEFAULT : PROVIDER_GOOGLE} // remove if not using Google Maps
         style={{ flex: 1 }}
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: initailLocation.latitude,
+          longitude: -initailLocation.longitude,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}

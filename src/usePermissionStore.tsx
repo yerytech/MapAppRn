@@ -3,7 +3,7 @@ import { PermissionStatus } from "./infrastructure/interfaces/permissions";
 import {
   checkLocationPermission,
   requestLocationPermission,
-} from "./actions/permissions/location";
+} from "./actions/permissions/permission-location";
 
 interface PermissionsState {
   locationStatus: PermissionStatus;
