@@ -4,7 +4,7 @@ import MapView, {
   PROVIDER_GOOGLE,
 } from "react-native-maps";
 import { Platform, StyleSheet, View } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Location } from "../../../infrastructure/interfaces/location";
 import { FAB } from "../ui/FAB";
 import { useLocationStore } from "../../store/location/useLocationStore";
@@ -15,7 +15,8 @@ interface Props {
 }
 
 export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
-  const { getLocation } = useLocationStore();
+  const { getLocation, whatchLocation, clearWatchLocation, lastKnownLocation } =
+    useLocationStore();
   const mapRef = useRef<MapView>();
   const cameraLocation = useRef(initailLocation);
 
@@ -30,6 +31,20 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
     if (!mapRef.current) return;
     moveCamareToUserLocation(location!);
   };
+
+  useEffect(() => {
+    whatchLocation();
+    return () => {
+      clearWatchLocation();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (lastKnownLocation) {
+      moveCamareToUserLocation(lastKnownLocation);
+    }
+  }, [lastKnownLocation]);
+
   return (
     <>
       <MapView

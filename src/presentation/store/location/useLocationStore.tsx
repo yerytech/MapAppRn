@@ -3,7 +3,7 @@ import { Location } from "../../../infrastructure/interfaces/location";
 import {
   clearWatch,
   getCurrentLocation,
-  wachCurrentLocation,
+  watchCurrentLocation,
 } from "../../../actions/location/location";
 
 interface LocationState {
@@ -12,7 +12,7 @@ interface LocationState {
   wachId: number | null;
 
   getLocation: () => Promise<Location | null>;
-  whatLocation: () => void;
+  whatchLocation: () => void;
   clearWatchLocation: () => void;
 }
 
@@ -27,12 +27,12 @@ export const useLocationStore = create<LocationState>()((set, get) => ({
     return location;
   },
 
-  whatLocation: () => {
+  whatchLocation: () => {
     const wachId = get().wachId;
     if (wachId !== null) {
       get().clearWatchLocation();
     }
-    const id = wachCurrentLocation((location) => {
+    const id = watchCurrentLocation((location) => {
       set({
         lastKnownLocation: location,
         userLocation: [...get().userLocation, location],

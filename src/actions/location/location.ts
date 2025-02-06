@@ -23,7 +23,7 @@ export const getCurrentLocation = (): Promise<Location> => {
 };
 
 
-export const wachCurrentLocation = (
+export const watchCurrentLocation = (
   locationCallback: (location: Location) => void
 ): number => {
   return Geolocation.watchPosition(
