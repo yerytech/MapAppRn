@@ -6,6 +6,7 @@ import MapView, {
 import { Platform, StyleSheet, View } from "react-native";
 import React from "react";
 import { Location } from "../../../infrastructure/interfaces/location";
+import { FAB } from "../ui/FAB";
 
 interface Props {
   showsUserLocation?: boolean;
@@ -36,6 +37,11 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
           image={require("../../../assets/marker.png")}
         /> */}
       </MapView>
+      <FAB
+        iconName={"compass"}
+        onPress={() => {}}
+        style={{ bottom: 20, right: 20 }}
+      />
     </>
   );
 };

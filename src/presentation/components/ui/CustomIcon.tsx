@@ -1,8 +1,8 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 interface Props {
-  name: keyof typeof Ionicons.glyphMap;
-  size: number;
-  color: string;
+  name?: keyof typeof Ionicons.glyphMap;
+  size?: number;
+  color?: string;
 }
 67;
 export const CustomIcon = ({
