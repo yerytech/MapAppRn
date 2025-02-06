@@ -1,9 +1,10 @@
 import MapView, {
   Marker,
+  Polyline,
   PROVIDER_DEFAULT,
   PROVIDER_GOOGLE,
 } from "react-native-maps";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Location } from "../../../infrastructure/interfaces/location";
 import { FAB } from "../ui/FAB";
@@ -15,11 +16,17 @@ interface Props {
 }
 
 export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
-  const { getLocation, whatchLocation, clearWatchLocation, lastKnownLocation } =
-    useLocationStore();
+  const {
+    getLocation,
+    whatchLocation,
+    clearWatchLocation,
+    lastKnownLocation,
+    userLocationList,
+  } = useLocationStore();
   const mapRef = useRef<MapView>();
   const cameraLocation = useRef(initailLocation);
   const [isFollowingUser, setFollowingUser] = useState(true);
+  const [isShowPolyline, setShowPolyline] = useState(true);
 
   const moveCamareToUserLocation = (location: Location) => {
     if (!mapRef.current) return;
@@ -61,6 +68,14 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
         }}
         onTouchStart={() => setFollowingUser(false)}
       >
+        {isShowPolyline && (
+          <Polyline
+            strokeColor="green"
+            strokeWidth={6}
+            coordinates={userLocationList}
+          />
+        )}
+
         {/* <Marker
           coordinate={{
             latitude: 37.78825,
@@ -71,6 +86,11 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
           image={require("../../../assets/marker.png")}
         /> */}
       </MapView>
+      <FAB
+        iconName={isShowPolyline ? "eye-outline" : "eye-off-outline"}
+        onPress={() => setShowPolyline(!isShowPolyline)}
+        style={{ bottom: 140, right: 20 }}
+      />
       <FAB
         iconName={isFollowingUser ? "walk-outline" : "accessibility-outline"}
         onPress={() => setFollowingUser(!isFollowingUser)}
