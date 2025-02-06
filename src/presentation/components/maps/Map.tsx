@@ -27,6 +27,13 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
   const cameraLocation = useRef(initailLocation);
   const [isFollowingUser, setFollowingUser] = useState(true);
   const [isShowPolyline, setShowPolyline] = useState(true);
+  const [markerList, setMarkerList] = useState<Location[]>([
+    lastKnownLocation!,
+    {
+      latitude: 19.4098,
+      longitude: -70.7213,
+    },
+  ]);
 
   const moveCamareToUserLocation = (location: Location) => {
     if (!mapRef.current) return;
@@ -56,6 +63,8 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
   return (
     <>
       <MapView
+        zoomControlEnabled
+        zoomEnabled
         ref={(map) => (mapRef.current = map!)}
         showsUserLocation
         provider={Platform.OS === "ios" ? PROVIDER_DEFAULT : PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -68,38 +77,38 @@ export const Map = ({ showsUserLocation = true, initailLocation }: Props) => {
         }}
         onTouchStart={() => setFollowingUser(false)}
       >
-        {isShowPolyline && (
+        {isShowPolyline && markerList.length >= 2 && (
           <Polyline
             strokeColor="green"
             strokeWidth={6}
-            coordinates={userLocationList}
+            coordinates={markerList}
           />
         )}
 
-        {/* <Marker
-          coordinate={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-          }}
-          title="My Marker"
-          description="This is my marker"
-          image={require("../../../assets/marker.png")}
-        /> */}
+        {markerList.map((marker, index) => (
+          <Marker
+            coordinate={marker}
+            key={index}
+            title={marker.latitude.toString()}
+            description={marker.longitude.toString()}
+            pinColor={index === 0 ? "green" : "red"}
+          />
+        ))}
       </MapView>
       <FAB
         iconName={isShowPolyline ? "eye-outline" : "eye-off-outline"}
         onPress={() => setShowPolyline(!isShowPolyline)}
-        style={{ bottom: 140, right: 20 }}
+        style={{ bottom: 140, left: 20 }}
       />
       <FAB
         iconName={isFollowingUser ? "walk-outline" : "accessibility-outline"}
         onPress={() => setFollowingUser(!isFollowingUser)}
-        style={{ bottom: 80, right: 20 }}
+        style={{ bottom: 80, left: 20 }}
       />
       <FAB
         iconName={"compass"}
         onPress={moveToCurrentLocation}
-        style={{ bottom: 20, right: 20 }}
+        style={{ bottom: 20, left: 20 }}
       />
     </>
   );
